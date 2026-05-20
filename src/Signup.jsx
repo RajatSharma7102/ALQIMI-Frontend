@@ -176,6 +176,7 @@ export default function RegistrationForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Handle Submit", values);
 
     const newTouched = REQUIRED.reduce((acc, k) => ({ ...acc, [k]: true }), {});
     setTouched((prev) => ({ ...prev, ...newTouched }));
