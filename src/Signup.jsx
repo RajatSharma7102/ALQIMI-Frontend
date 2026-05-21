@@ -4,6 +4,7 @@ import axios from "axios";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^\+?[\d\s\-().]{7,20}$/;
 const PW_RE = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+const NAME_RE = /^[A-Za-z\s]+$/;
 
 const INITIAL = {
   email: "",
@@ -19,18 +20,27 @@ const INITIAL = {
 function validate(name, value, allValues) {
   switch (name) {
     case "email":
+      if (!value.trim()) return "Email Addres is required.";
       return EMAIL_RE.test(value.trim()) ? "" : "Please enter a valid email address.";
     case "firstName":
-      return value.trim() ? "" : "First name is required.";
+       if (!value.trim()) return "First Name is required.";
+        return NAME_RE.test(value.trim())
+          ? ""
+          : "First Name contains only letters.";
     case "lastName":
-      return value.trim() ? "" : "Last name is required.";
+       if (!value.trim()) return "Last Name is required. ";
+        return NAME_RE.test(value.trim())
+          ? ""
+          : "Last Name contains only letters.";
     case "organization":
       return value.trim() ? "" : "Organization is required.";
     case "phone":
+      if (!value.trim()) return "Phone Number is required ";
       return PHONE_RE.test(value.trim())
         ? ""
         : "Enter a valid phone number (e.g. +91 9876543210).";
     case "password":
+      if (!value.trim()) return "Password is required.";
       return PW_RE.test(value)
         ? ""
         : "Min 8 chars with uppercase, lowercase, and a number.";
