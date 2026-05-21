@@ -213,6 +213,8 @@ export default function RegistrationForm() {
       try {
         await axios.post("http://localhost:3001/registration", values);
 
+        localStorage.setItem("isRegistered", "true");
+
         navigate("/home", {
           state: {
             firstName: values.firstName,
