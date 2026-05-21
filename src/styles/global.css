@@ -13,12 +13,37 @@ body {
   margin: 0;
   font-family: 'Barlow', sans-serif;
   min-height: 100vh;
-  background: #e8e8e8;
-  background-image:
-    radial-gradient(ellipse 70% 80% at 100% 50%, #d0d0d0 0%, transparent 60%),
-    radial-gradient(ellipse 40% 60% at 0% 80%, #c8c8c8 0%, transparent 50%);
+  background: #ffffff;
   position: relative;
   overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  right: -360px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1300px;
+  height: 1250px;
+  border-radius: 50%;
+  background: #f6f6f7;
+  z-index: 0;
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  right: -285px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 900px;
+  height: 1000px;
+  border-radius: 50%;
+  background: #edeeef;
+  z-index: 0;
+  pointer-events: none;
 }
 
 #root {
@@ -33,23 +58,52 @@ body {
   z-index: 1;
 }
 
-body::after {
+#root::before {
   content: '';
   position: fixed;
-  right: -120px;
+  right: -210px;
   top: 50%;
   transform: translateY(-50%);
-  width: 420px;
-  height: 420px;
+  width: 610px;
+  height: 820px;
   border-radius: 50%;
-  border: 60px solid rgba(255, 255, 255, 0.55);
+  background: #e4e6e7;
+  z-index: -1;
   pointer-events: none;
-  z-index: 0;
+}
+
+#root::after {
+  content: '';
+  position: fixed;
+  right: -135px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 470px;
+  height: 470px;
+  border-radius: 50%;
+  background: #e4e6e7;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .auth-card {
   border-radius: 1.125rem;
   animation: fadeUp 0.45s ease both;
+  position: relative;
+  z-index: 2;
+}
+
+.auth-card::before {
+  content: '';
+  position: fixed;
+  right: 150px;
+  top: 54%;
+  width: 56px;
+  height: 56px;
+  background: #ffffff;
+  border-radius: 50%;
+  z-index: -1;
+  pointer-events: none;
 }
 
 @keyframes fadeUp {
@@ -106,7 +160,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   visibility: hidden;
 }
 
-/* Custom password eye icon */
 .password-eye-btn {
   position: absolute;
   right: 14px;
@@ -124,7 +177,6 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   color: #333;
 }
 
-/* Remove Bootstrap valid/invalid tick icons */
 .form-control.is-invalid,
 .form-control.is-valid {
   background-image: none !important;
