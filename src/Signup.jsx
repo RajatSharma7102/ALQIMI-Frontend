@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^\+?[\d\s\-().]{7,20}$/;
@@ -191,7 +192,7 @@ export default function RegistrationForm() {
 
     setLoading(true);
     try {
-      await new Promise((r) => setTimeout(r, 1200));
+      await axios.post("http://localhost:3001/signup", values);
 
       setValues(INITIAL);
       setErrors({});
