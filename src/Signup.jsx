@@ -121,7 +121,7 @@ function TextField({
 
   return (
     <div className="mb-3">
-      <label className="form-label fw-semib old text-dark" htmlFor={id}>
+      <label className="form-label fw-semibold text-dark" htmlFor={id}>
         {label}
         {required && <RequiredMark />}
       </label>
