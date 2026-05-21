@@ -68,7 +68,7 @@ function PasswordField({
   required,
 }) {
   const [show, setShow] = useState(false);
-  const validationClass = touched ? (error ? "is-invalid" : "is-valid") : "";
+  const validationClass = touched && error ? "is-invalid" : "";
 
   return (
     <div className="mb-3">
@@ -76,27 +76,28 @@ function PasswordField({
         {label}
         {required && <RequiredMark />}
       </label>
-      <div className="input-group">
-        <input
-          id={id}
-          name={name}
-          type={show ? "text" : "password"}
-          className={`form-control input-bottom-shadow ${validationClass}`}
-          placeholder={label}
-          value={value}
-          onChange={onChange}
-          onBlur={onBlur}
-          autoComplete={id === "password" ? "new-password" : "off"}
-        />
-        <button
-          type="button"
-          className="btn btn-outline-secondary"
-          onClick={() => setShow((s) => !s)}
-          aria-label="Toggle password visibility"
-        >
-          <i className={`bi ${show ? "bi-eye" : "bi-eye-slash"}`} />
-        </button>
-      </div>
+      <div className="position-relative">
+  <input
+    id={id}
+    name={name}
+    type={show ? "text" : "password"}
+    className={`form-control input-bottom-shadow pe-5 ${validationClass}`}
+    placeholder={label}
+    value={value}
+    onChange={onChange}
+    onBlur={onBlur}
+    autoComplete={id === "password" ? "new-password" : "off"}
+  />
+
+  <button
+    type="button"
+    className="password-eye-btn"
+    onClick={() => setShow((s) => !s)}
+    aria-label="Toggle password visibility"
+  >
+    <i className={`bi ${show ? "bi-eye" : "bi-eye-slash"}`} />
+  </button>
+</div>
       {touched && error && (
         <div className="invalid-feedback d-block">{error}</div>
       )}
@@ -117,7 +118,7 @@ function TextField({
   touched,
   required,
 }) {
-  const validationClass = touched ? (error ? "is-invalid" : "is-valid") : "";
+  const validationClass = touched && error ? "is-invalid" : "";
 
   return (
     <div className="mb-3">

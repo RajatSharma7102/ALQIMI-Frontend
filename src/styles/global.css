@@ -57,30 +57,26 @@ body::after {
     opacity: 0;
     transform: translateY(22px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.logo-box {
-  background: #1a1a1a;
-}
-
-.logo-title {
-  font-size: 1.75rem;
-  letter-spacing: 3px;
-  line-height: 1;
-}
-
-.logo-sub {
-  font-size: 0.62rem;
-  letter-spacing: 2px;
-}
-
 .form-control:focus {
   border-color: var(--forge-accent);
   box-shadow: 0 0 0 0.25rem rgba(var(--forge-accent-rgb), 0.15);
+}
+
+.input-bottom-shadow {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border: 1px solid #ddd;
+}
+
+.input-bottom-shadow:focus {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  border-color: #999;
 }
 
 .btn-forge {
@@ -100,19 +96,36 @@ body::after {
   letter-spacing: 0.5px;
 }
 
-@media (max-width: 575.98px) {
-  .logo-title {
-    font-size: 1.4rem;
-  }
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
 }
 
-
-.input-bottom-shadow {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  border: 1px solid #ddd;
+input[type="password"]::-webkit-credentials-auto-fill-button {
+  display: none !important;
+  visibility: hidden;
 }
 
-.input-bottom-shadow:focus {
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
-  border-color: #999;
+/* Custom password eye icon */
+.password-eye-btn {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #777;
+  padding: 0;
+  line-height: 1;
+  z-index: 5;
+}
+
+.password-eye-btn:hover {
+  color: #333;
+}
+
+/* Remove Bootstrap valid/invalid tick icons */
+.form-control.is-invalid,
+.form-control.is-valid {
+  background-image: none !important;
 }
