@@ -181,3 +181,29 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
 .form-control.is-valid {
   background-image: none !important;
 }
+
+.extra-white-circle {
+  position: fixed;
+  right: -250px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 550px;
+  height: 650px;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  background: transparent;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.extra-white-circle::before {
+  content: '';
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 58px;
+  height: 58px;
+  background: #ffffff;
+  border-radius: 50%;
+}

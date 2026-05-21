@@ -6,6 +6,8 @@ function App() {
 
   return (
    <div>
+
+    <div className="extra-white-circle"></div>
     <BrowserRouter>
       <Routes>
         <Route path="/registration" element={<Signup />} />
