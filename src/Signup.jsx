@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^\+?[\d\s\-().]{7,20}$/;
@@ -154,6 +155,8 @@ function TextField({
 }
 
 export default function RegistrationForm() {
+  const navigate = useNavigate();
+
   const [values, setValues] = useState(INITIAL);
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
@@ -210,11 +213,12 @@ export default function RegistrationForm() {
       try {
         await axios.post("http://localhost:3001/registration", values);
 
-        setValues(INITIAL);
-        setErrors({});
-        setTouched({});
-        setToast(true);
-        setTimeout(() => setToast(false), 3500);
+        navigate("/home", {
+          state: {
+            firstName: values.firstName,
+            lastName: values.lastName,
+          },
+        });
       } catch (err) {
         const message =
           err.response?.data?.message || "Registration failed. Please try again.";
