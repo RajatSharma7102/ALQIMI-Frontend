@@ -192,7 +192,7 @@ export default function RegistrationForm() {
 
     setLoading(true);
     try {
-      await axios.post("http://localhost:3001/signup", values);
+      await axios.post("http://localhost:3001/registration", values);
 
       setValues(INITIAL);
       setErrors({});
@@ -247,6 +247,13 @@ export default function RegistrationForm() {
         style={{ maxWidth: 760 }}
       >
         <div className="card-body p-4 p-md-5">
+          <div className="text-center mb-4">
+            <img
+              src="/company-logo.png"
+              alt="Company Logo"
+              style={{ maxWidth: "180px", height: "auto" }}
+            />
+          </div>
 
           <form onSubmit={handleSubmit} noValidate>
             <div className="row g-3">
