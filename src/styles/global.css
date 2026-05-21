@@ -207,3 +207,13 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   background: #ffffff;
   border-radius: 50%;
 }
+
+.form-control {
+  height: 52px;
+  font-size: 16px;
+  padding: 12px 16px;
+}
+
+.password-eye-btn {
+  height: 52px;
+}
