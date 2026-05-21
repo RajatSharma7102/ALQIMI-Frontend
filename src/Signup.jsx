@@ -160,6 +160,11 @@ export default function RegistrationForm() {
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState(false);
 
+  const [errorModal, setErrorModal] = useState({
+    show: false,
+    message: "",
+  });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     const newValues = { ...values, [name]: value };
@@ -202,19 +207,25 @@ export default function RegistrationForm() {
     if (Object.values(newErrors).some(Boolean)) return;
 
     setLoading(true);
-    try {
-      await axios.post("http://localhost:3001/registration", values);
+      try {
+        await axios.post("http://localhost:3001/registration", values);
 
-      setValues(INITIAL);
-      setErrors({});
-      setTouched({});
-      setToast(true);
-      setTimeout(() => setToast(false), 3500);
-    } catch (err) {
-      alert(err.message || "Registration failed. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+        setValues(INITIAL);
+        setErrors({});
+        setTouched({});
+        setToast(true);
+        setTimeout(() => setToast(false), 3500);
+      } catch (err) {
+        const message =
+          err.response?.data?.message || "Registration failed. Please try again.";
+
+        setErrorModal({
+          show: true,
+          message: message,
+        });
+      } finally {
+        setLoading(false);
+      }
   };
 
   const field = (name) => ({
@@ -252,6 +263,40 @@ export default function RegistrationForm() {
           </div>
         </div>
       )}
+      {errorModal.show && (
+  <div
+    className="modal fade show"
+    style={{ display: "block", backgroundColor: "rgba(0,0,0,0.45)" }}
+    tabIndex="-1"
+  >
+    <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-content border-0 shadow">
+        <div className="modal-header">
+          <h5 className="modal-title">Registration Failed</h5>
+          <button
+            type="button"
+            className="btn-close"
+            onClick={() => setErrorModal({ show: false, message: "" })}
+          />
+        </div>
+
+        <div className="modal-body">
+          <p className="mb-0">{errorModal.message}</p>
+        </div>
+
+        <div className="modal-footer">
+          <button
+            type="button"
+            className="btn btn-forge"
+            onClick={() => setErrorModal({ show: false, message: "" })}
+          >
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
 
       <div
         className="card shadow-lg border-0 auth-card w-100"
