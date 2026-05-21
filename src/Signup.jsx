@@ -72,7 +72,7 @@ function PasswordField({
 
   return (
     <div className="mb-3">
-      <label className="form-label" htmlFor={id}>
+      <label className="form-label fw-semibold text-dark" htmlFor={id}>
         {label}
         {required && <RequiredMark />}
       </label>
@@ -81,7 +81,7 @@ function PasswordField({
           id={id}
           name={name}
           type={show ? "text" : "password"}
-          className={`form-control ${validationClass}`}
+          className={`form-control input-bottom-shadow ${validationClass}`}
           placeholder={label}
           value={value}
           onChange={onChange}
@@ -121,7 +121,7 @@ function TextField({
 
   return (
     <div className="mb-3">
-      <label className="form-label" htmlFor={id}>
+      <label className="form-label fw-semib old text-dark" htmlFor={id}>
         {label}
         {required && <RequiredMark />}
       </label>
@@ -129,7 +129,7 @@ function TextField({
         id={id}
         name={name}
         type={type}
-        className={`form-control ${validationClass}`}
+        className={`form-control input-bottom-shadow ${validationClass}`}
         placeholder={placeholder || label}
         value={value}
         onChange={onChange}
