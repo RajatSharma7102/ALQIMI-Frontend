@@ -2,11 +2,14 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+// Regex patterns for frontend validation
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^\+?[\d\s\-().]{7,20}$/;
 const PW_RE = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 const NAME_RE = /^[A-Za-z\s]+$/;
 
+
+// Initial form values.
 const INITIAL = {
   email: "",
   firstName: "",
@@ -18,6 +21,8 @@ const INITIAL = {
   position: "",
 };
 
+
+//For Validation 
 function validate(name, value, allValues) {
   switch (name) {
     case "email":
@@ -67,6 +72,8 @@ function RequiredMark() {
   return <span className="text-danger ms-1">*</span>;
 }
 
+
+//Password field with eye button
 function PasswordField({
   id,
   name,
@@ -116,6 +123,8 @@ function PasswordField({
   );
 }
 
+
+//Input field
 function TextField({
   id,
   name,
@@ -210,8 +219,10 @@ export default function RegistrationForm() {
 
     setLoading(true);
       try {
+         // Send form data to backend registration API
         await axios.post("http://localhost:3001/registration", values);
 
+         // Save registrattion status in local storage 
         localStorage.setItem("isRegistered", "true");
 
         navigate("/home", {
@@ -221,6 +232,7 @@ export default function RegistrationForm() {
           },
         });
       } catch (err) {
+        // Show backend error message in modal
         const message =
           err.response?.data?.message || "Registration failed. Please try again.";
 
